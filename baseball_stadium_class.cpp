@@ -1,8 +1,6 @@
 
 #include "baseball_stadium_class.h"
 
-#include "baseball_stadium_class.h"
-
 QString baseball_stadium::get_stadium_name() const { return stadium_name; }
 
 QString baseball_stadium::get_opening_data() const { return date_opened; }

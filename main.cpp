@@ -1,11 +1,13 @@
 
 
 #include <iostream>
-#include <vector>
-#include "Teams.h"
+#include <QVector>
+#include "baseball_team_class.h"
+#include "souvenir_class.h"
 
 int main() {
-    std::vector<Teams> myTeams;
+    QVector<baseball_team> myTeams;
+    QVector<souvenirs> mySouvenirs;
     
     return 0;
 }

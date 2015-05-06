@@ -3,30 +3,33 @@
 #ifndef __CS1D_Second_Project_Baseball__User__
 #define __CS1D_Second_Project_Baseball__User__
 
-#include <stdio.h>
-#include <string>
+#include <iostream>
+#include <QString>
 #include <QVector>
 #include "baseball_team_class.h"
 #include "baseball_stadium_class.h"
-
+#include "souvenir_class.h"
 
 class User
 {
 public:
     //default constructor
     User(): userName("username"), passWord("password"), admin(false){}
-    //to create an instance of the user obejct the parameters
-    //should be a userName, a passWord, and an admin status
+    
     User(QString passedUserName, QString passedPassWord,
-         bool passedAdmin):userName(passedUserName),
+         bool passedAdmin) : userName(passedUserName),
     passWord(passedPassWord), admin(passedAdmin){}
     
     bool isAdmin(){return admin;};
+    void buyItNow(souvenirs passedSouvenir)
+    {shoppingCart.push_back(passedSouvenir);};
     
 private:
     QString userName;
     QString passWord;
     bool admin;
+    QVector<souvenirs> shoppingCart;
+
 };
 
 class Admin: public User
@@ -54,14 +57,19 @@ public:
     void modify_stadium_capacity(QVector<baseball_team>::iterator
                                  stadiumModified, int newCapacity);
 
-    //As an administrator, I want to be able to add a new team and corresponding stadium
     void add_team(QVector<baseball_team>& passedTeamVector,
                   Qstring teamName, int americanOrNational,
                   QString stadiumName, QString streetAddress,
                   QString city, QString state, int zip, int month,
                   int day, int year, int boxOffice, int capacity);
     
-    //modify souvenirs needs to be done
+    void add_souvenir(QVector<souvenirs> passedSouvenirVector,
+                      QString passedString, int passedInt);
+    void delete_souvenir(QVector<souvenirs> passedSouvenirVector,
+                         QVector<souvenirs>::iterator souvenirToBeDeleted);
+    void modify_souvenir(QVector<souvenirs>::iterator
+                         souvenirToBeChanged,
+                         int priceToBeChanged);
     
 private:
 

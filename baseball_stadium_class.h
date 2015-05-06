@@ -2,6 +2,7 @@
 #ifndef BASEBALL_STADIUM_CLASS_H
 #define BASEBALL_STADIUM_CLASS_H
 
+#include <iostream>
 #include <QString>
 
 class baseball_stadium

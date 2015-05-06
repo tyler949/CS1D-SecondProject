@@ -110,8 +110,37 @@ void add_team(QVector<baseball_team>& passedTeamVector,
 }
 
 //--------------------------------------------------------------------
- //I want to be able to modify (add/delete/change) the souvenirs list,
-
-
+void Admin::add_souvenir(QVector<souvenirs> passedSouvenirVector,
+                         QString passedString, int passedInt)
+{
+    if (isAdmin()){
+        souvenirs tempSouvenir;
+        tempSouvenir.setSouvenirType(passedString);
+        tempSouvenir.setSouvenirPrice(passedInt);
+    
+        passedSouvenirVector.push_back(tempSouvenir);
+    }
+}
+//--------------------------------------------------------------------
+void Admin::delete_souvenir(QVector<souvenirs> passedSouvenirVector,
+                            QVector<souvenirs>::iterator souvenirToBeDeleted)
+{
+    passedSouvenirVector.erase(souvenirToBeDeleted);
+}
+//--------------------------------------------------------------------
+void Admin::modify_souvenir(QVector<souvenirs>::iterator
+                            souvenirToBeChanged,
+                            int priceToBeChanged)
+{
+    souvenirToBeChanged.setSouvenirPrice(priceToBeChanged);
+}
 //--------------------------------------------------------------------
 //--------------------------------------------------------------------
+//--------------------------------------------------------------------
+
+
+
+
+
+
+

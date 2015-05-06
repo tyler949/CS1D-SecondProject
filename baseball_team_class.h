@@ -2,10 +2,11 @@
 #ifndef BASEBALL_TEAM_CLASS_H
 #define BASEBALL_TEAM_CLASS_H
 
-#include <stdio.h>
-#include <string>
-#include <vector>
+#include <iostream>
+#include <QString>
+#include <QVector>
 #include "baseball_stadium_class.h"
+#include "souvenir_class.h"
 
 enum major_league
 {
@@ -18,6 +19,7 @@ class baseball_team : public baseball_stadium
 private:
     QString team_name;    // name of the baseball team
     major_league league;  // which of the two major leagues the team is in
+    QVector<souvenirs> souvenirsList;
     
 public:
     QString get_team_name() const;             // returns the team_name

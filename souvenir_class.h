@@ -3,22 +3,29 @@
 #ifndef __CS1D_Second_Project_Baseball__souvenir_class__
 #define __CS1D_Second_Project_Baseball__souvenir_class__
 
-#include <stdio.h>
+#include <iostream>
+#include <QString>
 
 class souvenirs
 {
 public:
-    void setSouvenirType(std::string passedString)
+    souvenirs() : souvenirType("none"), price(0.00), quantity(0){}
+    
+    void setSouvenirType(QString passedString)
     {souvenirType = passedString;};
     void setSouvenirPrice(double passedDouble)
     {price = passedDouble;};
+    void setSouvenirQuantity(int passedInt)
+    {quantity = passedInt;};
     
-    std::string getSouvenirType(){return souvenirType;};
+    QString getSouvenirType(){return souvenirType;};
     double getSouvenirPrice(){return price;};
+    int getSouvenirQuantity(){return quantity;};
     
 private:
-    std::string souvenirType;
+    QString souvenirType;
     double price;
+    int quantity;
 };
 
 #endif
