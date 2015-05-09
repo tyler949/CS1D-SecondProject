@@ -19,6 +19,9 @@ void read_stadiums_from_file(QVector<baseball_team>& vector)
     // be sure to change the following line so that it opens the file on your computer
     QFile file("/Users/austinrosario/Desktop/CS1D group project 2/Local_Project/Local_CS1D_project_2/stadium_data.txt");
 
+    // DEBUG: reading from write only file to test if the stadiums were written on the file correctly
+//    QFile file("/Users/austinrosario/Desktop/CS1D group project 2/Local_Project/Local_CS1D_project_2/write_only.txt");
+
     if(!file.open(QFile::ReadOnly | QFile::Text))
     {
         qDebug() << "faliled to open file\n";
@@ -94,7 +97,7 @@ void read_stadiums_from_file(QVector<baseball_team>& vector)
         {
             output_object(vector[x]);
         }
-
+        qDebug() << "Vector is size " << vector.size();
     }
 }
 

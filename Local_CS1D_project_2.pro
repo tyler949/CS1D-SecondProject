@@ -17,7 +17,8 @@ SOURCES += main.cpp\
     baseball_team_class.cpp \
     baseball_stadium_class.cpp \
     read_stadiums_from_file.cpp \
-    view_stadiums.cpp
+    view_stadiums.cpp \
+    write_stadiums_to_file.cpp
 
 HEADERS  += mainwindow.h \
     baseball_team_class.h \
@@ -29,4 +30,5 @@ FORMS    += mainwindow.ui \
     view_stadiums.ui
 
 DISTFILES += \
-    stadium_data.txt
+    stadium_data.txt \
+    write_only.txt

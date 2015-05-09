@@ -53,7 +53,8 @@ SOURCES       = main.cpp \
 		baseball_team_class.cpp \
 		baseball_stadium_class.cpp \
 		read_stadiums_from_file.cpp \
-		view_stadiums.cpp moc_mainwindow.cpp \
+		view_stadiums.cpp \
+		write_stadiums_to_file.cpp moc_mainwindow.cpp \
 		moc_view_stadiums.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
@@ -61,9 +62,11 @@ OBJECTS       = main.o \
 		baseball_stadium_class.o \
 		read_stadiums_from_file.o \
 		view_stadiums.o \
+		write_stadiums_to_file.o \
 		moc_mainwindow.o \
 		moc_view_stadiums.o
 DIST          = stadium_data.txt \
+		write_only.txt \
 		/Applications/QT/5.4/clang_64/mkspecs/features/spec_pre.prf \
 		/Applications/QT/5.4/clang_64/mkspecs/qdevice.pri \
 		/Applications/QT/5.4/clang_64/mkspecs/features/device_config.prf \
@@ -171,6 +174,7 @@ DIST          = stadium_data.txt \
 		/Applications/QT/5.4/clang_64/mkspecs/features/qt_config.prf \
 		/Applications/QT/5.4/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Applications/QT/5.4/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Applications/QT/5.4/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Applications/QT/5.4/clang_64/mkspecs/features/default_pre.prf \
 		/Applications/QT/5.4/clang_64/mkspecs/features/mac/default_pre.prf \
@@ -200,7 +204,8 @@ DIST          = stadium_data.txt \
 		baseball_team_class.cpp \
 		baseball_stadium_class.cpp \
 		read_stadiums_from_file.cpp \
-		view_stadiums.cpp
+		view_stadiums.cpp \
+		write_stadiums_to_file.cpp
 QMAKE_TARGET  = Local_CS1D_project_2
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Local_CS1D_project_2.app/Contents/MacOS/Local_CS1D_project_2
@@ -349,6 +354,7 @@ Makefile: Local_CS1D_project_2.pro /Applications/QT/5.4/clang_64/mkspecs/macx-cl
 		/Applications/QT/5.4/clang_64/mkspecs/features/qt_config.prf \
 		/Applications/QT/5.4/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Applications/QT/5.4/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Applications/QT/5.4/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Applications/QT/5.4/clang_64/mkspecs/features/default_pre.prf \
 		/Applications/QT/5.4/clang_64/mkspecs/features/mac/default_pre.prf \
@@ -481,6 +487,7 @@ Makefile: Local_CS1D_project_2.pro /Applications/QT/5.4/clang_64/mkspecs/macx-cl
 /Applications/QT/5.4/clang_64/mkspecs/features/qt_config.prf:
 /Applications/QT/5.4/clang_64/mkspecs/macx-clang/qmake.conf:
 /Applications/QT/5.4/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /Applications/QT/5.4/clang_64/mkspecs/features/exclusive_builds.prf:
 /Applications/QT/5.4/clang_64/mkspecs/features/default_pre.prf:
 /Applications/QT/5.4/clang_64/mkspecs/features/mac/default_pre.prf:
@@ -535,7 +542,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.h baseball_team_class.h baseball_stadium_class.h headers.h view_stadiums.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp baseball_team_class.cpp baseball_stadium_class.cpp read_stadiums_from_file.cpp view_stadiums.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp baseball_team_class.cpp baseball_stadium_class.cpp read_stadiums_from_file.cpp view_stadiums.cpp write_stadiums_to_file.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui view_stadiums.ui $(DISTDIR)/
 
 
@@ -571,6 +578,14 @@ moc_mainwindow.cpp: /Applications/QT/5.4/clang_64/lib/QtWidgets.framework/Versio
 
 moc_view_stadiums.cpp: /Applications/QT/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QWidget \
 		/Applications/QT/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qwidget.h \
+		/Applications/QT/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QDialog \
+		/Applications/QT/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qdialog.h \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QVector \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qvector.h \
+		baseball_team_class.h \
+		baseball_stadium_class.h \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QString \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
 		view_stadiums.h
 	/Applications/QT/5.4/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -I/Applications/QT/5.4/clang_64/mkspecs/macx-clang -I'/Users/austinrosario/Desktop/CS1D group project 2/Local_Project/Local_CS1D_project_2' -I/Applications/QT/5.4/clang_64/lib/QtWidgets.framework/Headers -I/Applications/QT/5.4/clang_64/lib/QtGui.framework/Headers -I/Applications/QT/5.4/clang_64/lib/QtCore.framework/Headers -F/Applications/QT/5.4/clang_64/lib view_stadiums.h -o moc_view_stadiums.cpp
 
@@ -615,6 +630,14 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		view_stadiums.h \
 		/Applications/QT/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QWidget \
 		/Applications/QT/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qwidget.h \
+		/Applications/QT/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QDialog \
+		/Applications/QT/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qdialog.h \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QVector \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qvector.h \
+		baseball_team_class.h \
+		baseball_stadium_class.h \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QString \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
@@ -646,8 +669,31 @@ read_stadiums_from_file.o: read_stadiums_from_file.cpp baseball_team_class.h \
 view_stadiums.o: view_stadiums.cpp view_stadiums.h \
 		/Applications/QT/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QWidget \
 		/Applications/QT/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qwidget.h \
+		/Applications/QT/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QDialog \
+		/Applications/QT/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qdialog.h \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QVector \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qvector.h \
+		baseball_team_class.h \
+		baseball_stadium_class.h \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QString \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
+		headers.h \
 		ui_view_stadiums.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o view_stadiums.o view_stadiums.cpp
+
+write_stadiums_to_file.o: write_stadiums_to_file.cpp baseball_team_class.h \
+		baseball_stadium_class.h \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QString \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QVector \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qvector.h \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QFile \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qfile.h \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QDebug \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qdebug.h \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QTextStream \
+		/Applications/QT/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qtextstream.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o write_stadiums_to_file.o write_stadiums_to_file.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

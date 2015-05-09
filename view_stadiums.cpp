@@ -12,5 +12,7 @@ view_stadiums::view_stadiums(QWidget *parent) :
 
 view_stadiums::~view_stadiums()
 {
+    write_stadiums_to_file(stadiums);
+
     delete ui;
 }
