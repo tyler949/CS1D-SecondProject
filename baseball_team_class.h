@@ -6,7 +6,8 @@
 enum major_league
 {
     AMERICAN_LEAGUE,
-    NATIONAL_LEAGUE
+    NATIONAL_LEAGUE,
+    MAJOR_LEAGUE        //means ALL leagues
 };
 
 class baseball_team : public baseball_stadium
