@@ -34,11 +34,14 @@ public:
     int getSizeEdges();
     bool getVisited();
     void setVisited(bool passedBool);
+    int getDistance();
+    void setDistance(int d);
     void addEdgeFV(Edge passedEdge);
     
     baseball_stadium theStadium;
 
 private:
+    int distance;
     vector<Edge>edges;
     bool visited;
 };
@@ -50,7 +53,7 @@ public:
          vector<Vertex>::iterator passedParentVertexIT)
     {
         myVertex = passedVertexIT;
-        costToParent = x;
+        costToStart = x;
         parentVertex = passedParentVertexIT;
     }
     
@@ -58,11 +61,11 @@ public:
     
     vector<Vertex>::iterator getParent(){return parentVertex;}
     
-    int getCostToParent(){return costToParent;}
+    int getCostToParent(){return costToStart;}
     
 private:
     vector<Vertex>::iterator myVertex;
-    int costToParent;
+    int costToStart;
     vector<Vertex>::iterator parentVertex;
 };
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

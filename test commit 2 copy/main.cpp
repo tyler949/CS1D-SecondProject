@@ -35,7 +35,7 @@ int main()
     cout << "running Dijkstra's Algorithm" << endl;
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
     
-//    stadiumGraph.dijkstras(tempVertex);
+    stadiumGraph.dijkstras(tempVertex);
     
     return 0;
 }
