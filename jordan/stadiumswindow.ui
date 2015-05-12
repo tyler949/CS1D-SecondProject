@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>stadiumswindow</class>
+ <widget class="QWidget" name="stadiumswindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>735</width>
+    <height>329</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Stadium List</string>
+  </property>
+  <widget class="QTableWidget" name="stadiumList">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>575</width>
+     <height>251</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="exitList">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>280</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Return</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="teamName">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>40</y>
+     <width>95</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Team Name</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">sortGroup</string>
+   </attribute>
+  </widget>
+  <widget class="QRadioButton" name="stadiumName">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>70</y>
+     <width>121</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Stadium Name</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">sortGroup</string>
+   </attribute>
+  </widget>
+  <widget class="QRadioButton" name="dateOpened">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>100</y>
+     <width>101</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Date Opened</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">sortGroup</string>
+   </attribute>
+  </widget>
+  <widget class="QCheckBox" name="grassSurface">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>290</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Grass Surface Only</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="americanLeague">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>290</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>American League</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">leagueGroup</string>
+   </attribute>
+  </widget>
+  <widget class="QRadioButton" name="nationalLeague">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>290</y>
+     <width>121</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>National League</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">leagueGroup</string>
+   </attribute>
+  </widget>
+  <widget class="QRadioButton" name="bothLeagues">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>290</y>
+     <width>95</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Both</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">leagueGroup</string>
+   </attribute>
+  </widget>
+  <widget class="QLabel" name="sortLabel">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>20</y>
+     <width>55</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Sort by:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="detailsButton">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>240</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Details</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+ <buttongroups>
+  <buttongroup name="sortGroup"/>
+  <buttongroup name="leagueGroup"/>
+ </buttongroups>
+</ui>

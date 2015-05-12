@@ -6,6 +6,21 @@ void vertex::set_edge(vertex *d, int w)
     edges.push_back(new_edge);
 }
 
+edge* vertex::get_shortest()
+{
+    edge *shortest = edges.at(0);
+
+    for(int i = 0; i < edges.size(); i++)
+    {
+        if(edges.at(i)->get_weight() < shortest->get_weight())
+        {
+            shortest = edges.at(i);
+        }
+    }
+
+    return shortest;
+}
+
 graph::graph(QVector<baseball_team*> tms)
 {
     create_vertices(tms);
@@ -126,5 +141,58 @@ void graph::print_vertex_edges()
                      << endl;
         }
         qDebug() << endl;
+    }
+}
+
+QVector<edge*> graph::prims()
+{
+    unvisit_all();
+
+    QVector<edge*> chosen;
+    QVector<edge*> possible;
+    QVector<vertex*> visited;
+    edge *shortest;
+
+    vertices.at(0)->set_visited(true);
+    visited.push_back(vertices.at(0));
+    shortest = visited.at(0)->get_shortest();
+
+    while(chosen.size() < vertices.size() - 1)
+    {
+        possible.erase(possible.begin(), possible.end());
+
+        for(int i = 0; i < visited.size(); i++)
+        {
+            for(int j = 0; j < visited.at(i)->get_edges().size(); j++)
+            {
+                if(visited.at(i)->get_edges().at(j)->get_destination()->get_visited() == false)
+                {
+                    possible.push_back(visited.at(i)->get_edges().at(j));
+                }
+            }
+        }
+
+        shortest = possible.at(0);
+
+        for(int i = 0; i < possible.size(); i++)
+        {
+            if(possible.at(i)->get_weight() <= shortest->get_weight())
+            {
+                shortest = possible.at(i);
+            }
+        }
+
+        shortest->get_destination()->set_visited(true);
+        visited.push_back(shortest->get_destination());
+        chosen.push_back(shortest);
+    }
+    return chosen;
+}
+
+void graph::unvisit_all()
+{
+    for(int i = 0; i < vertices.size(); i++)
+    {
+        vertices.at(i)->set_visited(false);
     }
 }

@@ -6,6 +6,13 @@
 #include <algorithm>
 using namespace std;
 
+enum sorted_by
+{
+    TEAM_NAME,
+    STADIUM_NAME,
+    DATE_OPENED
+};
+
 class sort_data
 {
     private:

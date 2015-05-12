@@ -58,12 +58,13 @@ class vertex
         ~vertex() {  }
 
         // G E T T E R S
-        baseball_stadium *get_stadium() { return team->get_stadium(); }
-        baseball_team    *get_team   () { return team;                }
-        int              get_key     () { return key;                 }
-        bool             get_visited () { return visited;             }
-        QVector<edge*>   get_edges   () { return edges;               }
-        vertex           *get_vertex () { return this;                }
+        baseball_stadium *get_stadium () { return team->get_stadium(); }
+        baseball_team    *get_team    () { return team;                }
+        int              get_key      () { return key;                 }
+        bool             get_visited  () { return visited;             }
+        QVector<edge*>   get_edges    () { return edges;               }
+        vertex           *get_vertex  () { return this;                }
+        edge             *get_shortest();
 
         // S E T T E R S
         void set_team   (baseball_team *t) { team    = t; }
@@ -92,11 +93,19 @@ public:
     // P R I N T E R S
     void print_vertex_edges();
 
+    // A L G O R I T H M S
+    QVector<vertex*> djikstras();
+    QVector<vertex*> djikstras(QVector<baseball_team*> tms);
+
+    // P R I M S
+    QVector<edge*> prims();
+
 private:
     QVector<vertex*> vertices;
 
     void create_vertices(QVector<baseball_team*> tms);
     void construct_edges();
+    void unvisit_all();
 };
 
 #endif
