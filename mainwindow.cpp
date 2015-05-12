@@ -57,6 +57,18 @@ char MainWindow::getUser()
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete layList;
+    delete radioButtonList;
+
+    for(int i=0;i<viewInfoRadioButton.size();i++)
+    {
+        delete viewInfoRadioButton[i];
+    }
+
+    for(int j=0;j<SouvenirRadioButton.size();j++)
+    {
+        delete SouvenirRadioButton[j];
+    }
 }
 
 void MainWindow::on_planTrip_clicked()
@@ -151,10 +163,9 @@ void MainWindow::on_cancel_clicked()
 
 void MainWindow::on_majorAlphabet_clicked()
 {
-    QWidget *radioButtonList;
 
     radioButtonList = new QWidget;
-    QVBoxLayout *layList = new QVBoxLayout(this);
+    layList = new QVBoxLayout(this);
 
 
     viewInfoRadioButton.clear();
@@ -227,8 +238,11 @@ void MainWindow::on_modifyStadium_clicked()
 
     viewInfoRadioButton.clear();
 
-    QVBoxLayout *layList = new QVBoxLayout(this);
+    layList = new QVBoxLayout(this);
 
+    radioButtonList = new QWidget;
+
+    modifyStadium = true;
 
     for (QVector<baseball_team>::iterator it = stadiums.begin(); it != stadiums.end(); ++it)
     {
@@ -237,9 +251,11 @@ void MainWindow::on_modifyStadium_clicked()
         viewInfoRadioButton.push_back(button);
 
         layList->addWidget(button);
+
+        radioButtonList->setLayout(layList);
     }
 
-    ui->scrollAreaStadiumModify->setLayout(layList);
+    ui->scrollArea_2->setWidget(radioButtonList);
 
     ui->page_admin_options->hide();
     ui->page_stadium_to_modify->show();
@@ -253,7 +269,6 @@ void MainWindow::on_modify_clicked()
 
     for(int count = 0; count < viewInfoRadioButton.size(); count++)
     {
-
 
         if(viewInfoRadioButton.at(count)->isChecked())
         {
@@ -278,21 +293,21 @@ void MainWindow::on_modify_clicked()
 
             found = true;
 
-            ui->lineInputTeamName->setText(stadiums.at(count).get_team_name());
+            ui->lineInputTeamName->setDisabled(true);
             ui->lineInputLeague->setText(league);
-            ui->lineInputStadiumName->setText(stadiums.at(count).get_stadium_name());
-            ui->lineInputStreet->setText(stadiums.at(count).get_address());
-            ui->lineInputCity->setText(stadiums.at(count).get_city());
-            ui->lineInputState->setText(stadiums.at(count).get_state());
-            ui->lineInputZip->setText(stadiums.at(count).get_zip());
-            ui->lineInputBox->setText(stadiums.at(count).get_box_office_num());
+            ui->lineInputStadiumName->setText(stadiums[count].get_stadium_name());
+            ui->lineInputStreet->setText(stadiums[count].get_address());
+            ui->lineInputCity->setText(stadiums[count].get_city());
+            ui->lineInputState->setText(stadiums[count].get_state());
+            ui->lineInputZip->setText(stadiums[count].get_zip());
+            ui->lineInputBox->setText(stadiums[count].get_box_office_num());
             ui->lineM->setText(m);
             ui->lineD->setText(d);
             ui->lineY->setText(y);
             ui->lineInputCapacity->setText(s1);
             ui->lineInputCapacity2->setText(s2);
-            ui->lineInputDescription1->setText(stadiums.at(count).get_description_one());
-            ui->lineInputDescription2->setText(stadiums.at(count).get_description_two());
+            ui->lineInputDescription1->setText(stadiums[count].get_description_one());
+            ui->lineInputDescription2->setText(stadiums[count].get_description_two());
 
         }
 
@@ -328,6 +343,7 @@ void MainWindow::on_submit_clicked()
         c2 = ui->lineInputCapacity2->text().toInt();
 
 
+        ui->lineInputTeamName->setDisabled(true);
         stadiumIterator->set_stadium_name(ui->lineInputStadiumName->text());
         stadiumIterator->set_address(ui->lineInputStreet->text());
         stadiumIterator->set_city(ui->lineInputCity->text());
@@ -410,14 +426,16 @@ void MainWindow::on_submit_clicked()
 
                 stadiums.push_back(*object);
 
-                ui->page_modify_stadium->hide();
-                ui->page_main_window->show();
+
             }
+
+
 
         }
 
 
-
+    ui->page_modify_stadium->hide();
+    ui->page_main_window->show();
 
 }
 
@@ -435,18 +453,24 @@ void MainWindow::on_backToList_2_clicked()
 void MainWindow::on_addTeam_clicked()
 {
 
-    ui->lineInputTeamName->text().clear();
-    ui->lineInputLeague->text().clear();
-    ui->lineInputStadiumName->text().clear();
-    ui->lineInputStreet->text().clear();
-    ui->lineInputCity->text().clear();
-    ui->lineInputState->text().clear();
-    ui->lineInputZip->text().clear();
-    ui->lineInputBox->text().clear();
-    ui->lineDescription1->text().clear();
-    ui->lineDescription2->text().clear();
-    ui->lineInputCapacity->text().clear();
-    ui->lineInputCapacity2->text().clear();
+    ui->lineInputTeamName->clear();
+    ui->lineInputLeague->clear();
+    ui->lineInputStadiumName->clear();
+    ui->lineInputStreet->clear();
+    ui->lineInputCity->clear();
+    ui->lineInputState->clear();
+    ui->lineInputZip->clear();
+    ui->lineInputBox->clear();
+    ui->lineDescription1->clear();
+    ui->lineDescription2->clear();
+    ui->lineInputCapacity->clear();
+    ui->lineInputCapacity2->clear();
+    ui->lineDescription1->clear();
+    ui->lineDescription2->clear();
+    ui->lineD->clear();
+    ui->lineM->clear();
+    ui->lineY->clear();
+
 
 
     ui->page_admin_options->hide();
@@ -515,9 +539,8 @@ void MainWindow::on_selectSouvenir_clicked()
 
 void MainWindow::on_backToList_3_clicked()
 {    
-    QWidget *radioButtonList;
 
-    QVBoxLayout *layList = new QVBoxLayout(this);
+    layList = new QVBoxLayout(this);
 
     SouvenirRadioButton.clear();
 
@@ -572,9 +595,8 @@ void MainWindow::on_submit_2_clicked()
 
 void MainWindow::on_changePrice_clicked()
 {
-    QWidget *radioButtonList;
 
-    QVBoxLayout *layList = new QVBoxLayout(this);
+    layList = new QVBoxLayout(this);
 
     SouvenirRadioButton.clear();
 
@@ -617,9 +639,8 @@ void MainWindow::on_backToMain2_2_clicked()
 
 void MainWindow::on_deleteSouvenir_clicked()
 {
-    QWidget *radioButtonList;
 
-    QVBoxLayout *layList = new QVBoxLayout(this);
+    layList = new QVBoxLayout(this);
 
     SouvenirRadioButton.clear();
 
@@ -653,3 +674,9 @@ void MainWindow::on_addSouvenir_clicked()
     ui->page_modify_souvenirs->hide();
     ui->page_add_modify_souvenir->show();
 }
+
+void MainWindow::on_majorTeam_clicked()
+{
+
+}
+

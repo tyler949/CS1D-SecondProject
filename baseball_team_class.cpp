@@ -10,6 +10,8 @@ void baseball_team::set_league(major_league new_league) { league = new_league; }
 
 baseball_team::baseball_team(QString& t, major_league l) : team_name(t), league(l) {}
 
+//baseball_team *get_this() {return this;}
+
 baseball_team::baseball_team(const baseball_team& o) : team_name(o.team_name), league(o.league)
 {
     set_stadium_name(o.get_stadium_name());

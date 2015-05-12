@@ -31,7 +31,7 @@
 
 //    for(j = 1; j < tms.size(); j++)
 //    {
-//        key = tms.at(j)->get_this();
+//        key = tms.at(j)->this();
 
 //        for(i = j - 1; (i >= 0) && (tms.at(i)->get_month() < key->get_month()); i--)
 //        {
@@ -67,7 +67,7 @@
 
 //    for(j = 1; j < tms.size(); j++)
 //    {
-//        key = tms.at(j)->get_this();
+//        key = tms.at(j)->*this();
 
 //        for(i = j - 1; (i >= 0) && (tms.at(i)->get_year() < key->get_year()); i--)
 //        {

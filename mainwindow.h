@@ -10,6 +10,7 @@
 #include "souvenir.h"
 #include "user.h"
 #include <QStackedWidget>
+#include <QVBoxLayout>
 
 namespace Ui {
 class MainWindow;
@@ -82,6 +83,8 @@ private slots:
 
     void on_addSouvenir_clicked();
 
+    void on_majorTeam_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -96,6 +99,10 @@ private:
     QList<QRadioButton*> viewInfoRadioButton;
 
     QList<QRadioButton*> SouvenirRadioButton;
+
+    QWidget *radioButtonList;
+
+    QVBoxLayout *layList;
 
     QVector<souvenir_class> souvenirs;
 

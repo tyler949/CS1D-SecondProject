@@ -22,7 +22,8 @@ class baseball_team : public baseball_stadium
         void set_league(major_league new_league);  // changes the league the team is in
         baseball_team(QString& t, major_league l); // initialization constructor
         baseball_team(const baseball_team& o);     // copy constructor
-        baseball_team();                           // default constructor
+        baseball_team();                            // default constructor
+        baseball_team *get_this();
         ~baseball_team();                          // destructor
 };
 
