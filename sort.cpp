@@ -1,130 +1,175 @@
 //#include "sort.h"
 
-//sort_data::sort_data(QVector<baseball_team*> baseball_teams)
-//{
-//    for(int i = 0; i < baseball_teams.size(); i++)
-//    {
-//        teams.push_back(baseball_teams.at(i));
-//    }
-//}
-
-//sort_data::~sort_data() { }
+//// P R I V A T E
 
 //QVector<baseball_team*> sort_data::of_this_league(major_league league)
 //{
+//    QVector<baseball_team*> temp;
 
 //    if(league == MAJOR_LEAGUE)
 //    {
-//        return teams;
+//        temp = teams;
+//        return temp;
 //    }
-
-//    QVector<baseball_team*> temp;
 
 //    for(int i = 0; i < teams.size(); i++)
 //    {
 //        if(teams.at(i)->get_league() == league)
 //        {
-//            temp.push_back(teams.at(i));
+//            temp.push_back(teams[i]);
 //        }
 //    }
 
 //    return temp;
 //}
 
-//QVector<baseball_team*> sort_data::sort_team_names(QVector<baseball_team*> baseball_teams)
+//void sort_data::insertion_m(QVector<baseball_team*> &tms)
 //{
-//    sort(baseball_teams.begin(), baseball_teams.end(), [] (const baseball_team& x, const baseball_team& y) { return x.get_team_name() < y.get_team_name();});
+//    // Insertion sort months.
+//    int i, j;
+//    baseball_team* key;
 
-//    return baseball_teams;
+//    for(j = 1; j < tms.size(); j++)
+//    {
+//        key = tms.at(j)->get_this();
+
+//        for(i = j - 1; (i >= 0) && (tms.at(i)->get_month() < key->get_month()); i--)
+//        {
+//            tms[i + 1] = tms.at(i);
+//        }
+//        tms[i + 1] = key;
+//    }
 //}
 
-//QVector<baseball_team*> sort_data::sort_stadium_names(QVector<baseball_team *> baseball_teams)
+//void sort_data::insertion_d(QVector<baseball_team*> &tms)
 //{
-//    sort(baseball_teams.begin(), baseball_teams.end(), [] (const baseball_team& x, const baseball_team& y) { return x.get_stadium_name() < y.get_stadium_name();});
+//    // Insertion sort days.
+//    int i, j;
+//    baseball_team* key;
 
-//    return baseball_teams;
+//    for(j = 1; j < tms.size(); j++)
+//    {
+//        key = tms.at(j)->get_this();
+
+//        for(i = j - 1; (i >= 0) && (tms.at(i)->get_day() < key->get_day()); i--)
+//        {
+//            tms[i + 1] = tms.at(i);
+//        }
+//        tms[i + 1] = key;
+//    }
 //}
 
-//QVector<baseball_team*> sort_data::sort_dates(QVector<baseball_team*> baseball_teams)
+//void sort_data::insertion_y(QVector<baseball_team*> &tms)
 //{
-//    int i, j, key, len = baseball_teams.length();
+//    // Insertion sort years.
+//    int i, j;
+//    baseball_team* key;
 
-//    for(j = 1; j < len; j++)
+//    for(j = 1; j < tms.size(); j++)
 //    {
-//        key = baseball_teams.at(j)->get_day();
+//        key = tms.at(j)->get_this();
 
-//        for(i = j - 1; (i >= 0) && (baseball_teams.at(i)->get_day() < key); i--)
+//        for(i = j - 1; (i >= 0) && (tms.at(i)->get_year() < key->get_year()); i--)
 //        {
-//            baseball_teams.at(i + 1) = baseball_teams.at(i);
+//            tms[i + 1] = tms.at(i);
 //        }
-
-//        baseball_teams.at(i + 1)->get_day() = key;
+//        tms[i + 1] = key;
 //    }
 
-//    i, j, key, len = baseball_teams.length();
-
-//    for(j = 1; j < len; j++)
-//    {
-//        key = baseball_teams.at(j)->get_month();
-
-//        for(i = j - 1; (i >= 0) && (baseball_teams.at(i)->get_month() < key); i--)
-//        {
-//            baseball_teams.at(i + 1) = baseball_teams.at(i);
-//        }
-
-//        baseball_teams.at(i + 1)->get_month() = key;
-//    }
-
-//    i, j, key, len = baseball_teams.length();
-
-//    for(j = 1; j < len; j++)
-//    {
-//        key = baseball_teams.at(j)->get_year();
-
-//        for(i = j - 1; (i >= 0) && (baseball_teams.at(i)->get_year() < key); i--)
-//        {
-//            baseball_teams.at(i + 1) = baseball_teams.at(i);
-//        }
-
-//        baseball_teams.at(i + 1)->get_year() = key;
-//    }
-
-//    return baseball_teams;
 //}
+
+//int sort_data::partition_t(QVector<baseball_team*> &tms, int left, int right, QString who)
+//{
+//    // Partition by team name.
+//    for(int i = left; i < right; ++i)
+//    {
+//        if(tms.at(i)->get_team_name() <= who)
+//        {
+//            swap(tms[i], tms[left]);
+//            left++;
+//        }
+//    }
+//    return left - 1;
+//}
+
+//int sort_data::partition_s(QVector<baseball_team*> &tms, int left, int right, QString who)
+//{
+//    // Partition by stadium name.
+//    for(int i = left; i < right; ++i)
+//    {
+//        if(tms.at(i)->get_stadium_name() <= who)
+//        {
+//            swap(tms[i], tms[left]);
+//            left++;
+//        }
+//    }
+//    return left - 1;
+//}
+
+//void sort_data::quicksort_t(QVector<baseball_team*> &tms, int left, int right)
+//{
+//    // Quicksort by team name.
+//    if(left >= right) return;
+
+//    int middle = left + (right - left) / 2;
+//    swap(tms[middle], tms[left]);
+//    int midpoint = partition_t(tms, left + 1, right, tms.at(left)->get_team_name());
+//    swap(tms[left], tms[midpoint]);
+//    quicksort_t(tms, left, midpoint);
+//    quicksort_t(tms, midpoint + 1, right);
+//}
+
+//void sort_data::quicksort_s(QVector<baseball_team*> &tms, int left, int right)
+//{
+//    // Quicksort by stadium name.
+//    if(left >= right) return;
+
+//    int middle = left + (right - left) / 2;
+//    swap(tms[middle], tms[left]);
+//    int midpoint = partition_s(tms, left + 1, right, tms.at(left)->get_stadium_name());
+//    swap(tms[left], tms[midpoint]);
+//    quicksort_s(tms, left, midpoint);
+//    quicksort_s(tms, midpoint + 1, right);
+//}
+
+//// P U B L I C
 
 //QVector<baseball_team*> sort_data::by_team_name(major_league league)
 //{
 //    QVector<baseball_team*> temp = of_this_league(league);
-
-//    return sort_team_names(temp);
+//    quicksort_t(temp, 0, temp.size());
+//    return temp;
 //}
 
 //QVector<baseball_team*> sort_data::by_stadium_name(major_league league)
 //{
 //    QVector<baseball_team*> temp = of_this_league(league);
-
-//    return sort_stadium_names(temp);
-//}
-
-//QVector<baseball_team*> sort_data::by_grass_surface(major_league league)
-//{
-//    QVector<baseball_team*> temp1 = of_this_league(league);
-//    QVector<baseball_team*> temp2;
-
-//    for(int i = 0; i < temp1.size(); i++)
-//    {
-//        if(temp1.at(i)->get_grass() == true)
-//        {
-//            temp2.push_back(temp1.at(i));
-//        }
-//    }
-
-//    return sort_team_names(temp2);
+//    quicksort_s(temp, 0, temp.size());
+//    return temp;
 //}
 
 //QVector<baseball_team*> sort_data::by_date_opened(major_league league)
 //{
 //    QVector<baseball_team*> temp = of_this_league(league);
 
-//    return sort_dates(temp);
+//    insertion_d(temp);
+//    insertion_m(temp);
+//    insertion_y(temp);
+
+//    return temp;
+//}
+
+//QVector<baseball_team*> sort_data::by_grass_surface(QVector<baseball_team*> tms)
+//{
+//    QVector<baseball_team*> temp;
+
+//    for(int i = 0; i < tms.size(); i++)
+//    {
+//        if(tms.at(i)->get_grass() == true)
+//        {
+//            temp.push_back(tms.at(i));
+//        }
+//    }
+
+//    return temp;
 //}

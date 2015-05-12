@@ -19,13 +19,17 @@ SOURCES += main.cpp\
     read_stadiums_from_file.cpp \
     view_stadiums.cpp \
     write_stadiums_to_file.cpp \
-    sort.cpp
+    sort.cpp \
+    souvenir.cpp \
+    user.cpp
 
 HEADERS  += mainwindow.h \
     baseball_stadium_class.h \
     baseball_team_class.h \
     headers.h \
     view_stadiums.h \
-    sort.h
+    sort.h \
+    souvenir.h \
+    user.h
 
 FORMS    += mainwindow.ui

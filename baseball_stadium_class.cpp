@@ -26,6 +26,8 @@ QString baseball_stadium::get_description_one() const { return description_one; 
 
 QString baseball_stadium::get_description_two() const { return description_two; }
 
+bool baseball_stadium::get_grass() const { return grass; }
+
 void baseball_stadium::set_stadium_name(QString s) { stadium_name = s; }
 
 void baseball_stadium::set_address(QString a) { street_address = a; }
@@ -52,6 +54,8 @@ void baseball_stadium::set_description_one(QString d) { description_one = d; }
 
 void baseball_stadium::set_description_two(QString d) { description_two = d; }
 
+void baseball_stadium::set_grass(bool g) { grass = g; }
+
 baseball_stadium::baseball_stadium(QString sn, // stadium name
                                    QString sa, // street adress of the stadium
                                    QString c,  // city of the stadium
@@ -64,7 +68,8 @@ baseball_stadium::baseball_stadium(QString sn, // stadium name
                                    int s1,     // stadium's first seating capacity
                                    QString d1, // description of s1 (postseason capacity, day time capacity, etc.)
                                    int s2,     // stadium's secondary seating capacity
-                                   QString d2) // description of s1 (postseason capacity, day time capacity, etc.)
+                                   QString d2, // description of s1 (postseason capacity, day time capacity, etc.)
+                                   bool g)     // grass surface?
 {
    stadium_name = sn;
    street_address = sa;
@@ -79,15 +84,15 @@ baseball_stadium::baseball_stadium(QString sn, // stadium name
    description_one = d1;
    seating_two = s2;
    description_two = d2;
+   grass = g;
 }
 
 baseball_stadium::baseball_stadium(const baseball_stadium& o) : stadium_name(o.stadium_name),
                   street_address(o.street_address), city(o.city), state(o.state), zip(o.zip),
                   month(o.month), day(o.day), year(o.year), box_office_num(o.box_office_num),
                   seating_one(o.seating_one), description_one(o.description_one),
-                  seating_two(o.seating_two), description_two(o.description_two) {}
+                  seating_two(o.seating_two), description_two(o.description_two), grass(o.grass) {}
 
 baseball_stadium::baseball_stadium() {}
 
 baseball_stadium::~baseball_stadium() {}
-

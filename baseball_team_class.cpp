@@ -4,7 +4,7 @@ QString baseball_team::get_team_name() const { return team_name; }
 
 major_league baseball_team::get_league() const { return league; }
 
-void baseball_team::set_team_name(QString& new_name) { team_name = new_name; }
+void baseball_team::set_team_name(QString new_name) { team_name = new_name; }
 
 void baseball_team::set_league(major_league new_league) { league = new_league; }
 
