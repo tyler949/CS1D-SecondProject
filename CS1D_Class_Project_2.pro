@@ -13,8 +13,19 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    baseball_stadium_class.cpp \
+    baseball_team_class.cpp \
+    read_stadiums_from_file.cpp \
+    view_stadiums.cpp \
+    write_stadiums_to_file.cpp \
+    sort.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    baseball_stadium_class.h \
+    baseball_team_class.h \
+    headers.h \
+    view_stadiums.h \
+    sort.h
 
 FORMS    += mainwindow.ui

@@ -2,6 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <baseball_team_class.h>
+#include <QMessageBox>
+#include <QDebug>
+#include <baseball_team_class.h>
+#include <QRadioButton>
 
 namespace Ui {
 class MainWindow;
@@ -42,10 +47,20 @@ private slots:
 
     void on_cancel_clicked();
 
+    void on_majorAlphabet_clicked();
+
+    void on_viewInformation_clicked();
+
+    void on_backToList_clicked();
+
 private:
     Ui::MainWindow *ui;
 
     char userType; //'c' for customer, 'a' for admin, 'n' for none(no login made)
+
+    QVector<baseball_team> stadiums;
+
+    QList<QRadioButton*> viewInforRadioButton;
 };
 
 #endif // MAINWINDOW_H
