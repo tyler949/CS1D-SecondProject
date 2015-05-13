@@ -40,42 +40,7 @@
        <item>
         <widget class="QPushButton" name="majorAlphabet">
          <property name="text">
-          <string>Major League Stadiums Sorted in Alphabetic Order</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="majorTeam">
-         <property name="text">
-          <string>Major League Stadiums Sorted by Team Name</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="americanTeam">
-         <property name="text">
-          <string>Amercan League Stadiums Sorted by Team Name</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="nationalTeam">
-         <property name="text">
-          <string>National League Stadiums Sorted by Team Name</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="grassSurface">
-         <property name="text">
-          <string>View Grass Surface Stadiums</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="byDate">
-         <property name="text">
-          <string>View Stadiums in Chronological Order</string>
+          <string>Stadium List</string>
          </property>
         </widget>
        </item>

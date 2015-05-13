@@ -433,6 +433,8 @@ void MainWindow::on_submit_clicked()
 
         }
 
+    write_stadiums_to_file(stadiums);
+
 
     ui->page_modify_stadium->hide();
     ui->page_main_window->show();

@@ -467,7 +467,7 @@ Chicago Cubs
 National League
 1060 West Addison Street
 Chicago
-IL
+Il
 60613
 (773) 404-2827
 4
@@ -477,3 +477,4 @@ IL
 n/a
 0
 n/a
+

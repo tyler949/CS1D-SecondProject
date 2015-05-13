@@ -11,6 +11,7 @@
 #include "user.h"
 #include <QStackedWidget>
 #include <QVBoxLayout>
+#include "headers.h"
 
 namespace Ui {
 class MainWindow;

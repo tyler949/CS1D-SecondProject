@@ -1,0 +1,13 @@
+INPUT(
+./release/main.o
+./release/mainwindow.o
+./release/baseball_stadium_class.o
+./release/baseball_team_class.o
+./release/read_stadiums_from_file.o
+./release/view_stadiums.o
+./release/write_stadiums_to_file.o
+./release/sort.o
+./release/souvenir.o
+./release/user.o
+./release/moc_mainwindow.o
+);

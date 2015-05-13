@@ -9,7 +9,7 @@ void write_stadiums_to_file(QVector<baseball_team>& vector)
 {
     // ATTENTION
     // be sure to change the following line so that it opens the file on your computer
-    QFile file("/Users/Aurel/Documents/GitHub/CS1D-SecondProject/write_only.txt");
+    QFile file("/Users/Jordan/Documents/GitHub/CS1D-SecondProject/stadium_data.txt");
 
     if(!file.open(QFile::WriteOnly | QFile::Text))
     {
