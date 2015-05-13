@@ -51,12 +51,12 @@ stadiumdetails::stadiumdetails(QWidget *parent, QVector<baseball_team*> tms, QSt
         seat2 = (QString::number(tms.at(i)->get_seating_two()));
     }
 
-    ui->detailsList->setRowCount(8);
+    ui->detailsList->setRowCount(9);
     ui->detailsList->setColumnCount(1);
-    titles << "Team" << "Home Stadium" << "Address" << "Box Office"
+    titles << "Team" << "League" << "Home Stadium" << "Address" << "Box Office"
            << "Opened" << "Grass" << des1 << des2;
     ui->detailsList->setColumnWidth(0,300);
-    ui->detailsList->setRowHeight(2, 50);
+    ui->detailsList->setRowHeight(3, 50);
     ui->detailsList->setVerticalHeaderLabels(titles);
     ui->detailsList->horizontalHeader()->hide();
     ui->detailsList->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -75,13 +75,23 @@ stadiumdetails::stadiumdetails(QWidget *parent, QVector<baseball_team*> tms, QSt
 //    qDebug() << address;
 
     ui->detailsList->setItem(0, 0, new QTableWidgetItem(tms.at(i)->get_team_name()));
-    ui->detailsList->setItem(1, 0, new QTableWidgetItem(tms.at(i)->get_stadium_name()));
-    ui->detailsList->setItem(2, 0, new QTableWidgetItem(address));
-    ui->detailsList->setItem(3, 0, new QTableWidgetItem(tms.at(i)->get_box_office_num()));
-    ui->detailsList->setItem(4, 0, new QTableWidgetItem(date));
-    ui->detailsList->setItem(5, 0, new QTableWidgetItem("Yes"));
-    ui->detailsList->setItem(6, 0, new QTableWidgetItem(seat1));
-    ui->detailsList->setItem(7, 0, new QTableWidgetItem(seat2));
+
+    if(tms.at(i)->get_league() == AMERICAN_LEAGUE)
+    {
+        ui->detailsList->setItem(1, 0, new QTableWidgetItem("American League"));
+    }
+    else
+    {
+        ui->detailsList->setItem(1, 0, new QTableWidgetItem("National League"));
+    }
+
+    ui->detailsList->setItem(2, 0, new QTableWidgetItem(tms.at(i)->get_stadium_name()));
+    ui->detailsList->setItem(3, 0, new QTableWidgetItem(address));
+    ui->detailsList->setItem(4, 0, new QTableWidgetItem(tms.at(i)->get_box_office_num()));
+    ui->detailsList->setItem(5, 0, new QTableWidgetItem(date));
+    ui->detailsList->setItem(6, 0, new QTableWidgetItem("Yes"));
+    ui->detailsList->setItem(7, 0, new QTableWidgetItem(seat1));
+    ui->detailsList->setItem(8, 0, new QTableWidgetItem(seat2));
 
 }
 

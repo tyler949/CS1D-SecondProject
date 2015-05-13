@@ -12,13 +12,16 @@ class edge
         edge() :
             origin     (NULL),
             destination(NULL),
-            weight     (0) {  }
+            weight     (0),
+            visited    (false){  }
         edge(vertex *o,
              vertex *d,
-             int w) :
+             int w,
+             bool v) :
             origin     (o),
             destination(d),
-            weight     (w) {  }
+            weight     (w),
+            visited    (v){  }
 
         // D E S T R U C T O R S
         ~edge() {  }
@@ -27,16 +30,19 @@ class edge
         vertex *get_origin     () { return origin;      }
         vertex *get_destination() { return destination; }
         int    get_weight      () { return weight;      }
+        bool   get_visited     () { return visited;     }
 
         // S E T T E R S
-        void set_origin     (vertex *o) { origin = o;      }
+        void set_origin     (vertex *o) { origin      = o; }
         void set_destination(vertex *d) { destination = d; }
-        void set_weight     (int w    ) { weight = w;      }
+        void set_weight     (int w    ) { weight      = w; }
+        void set_visited    (bool v   ) { visited     = v; }
 
     private:
         vertex *origin;
         vertex *destination;
         int    weight;
+        bool   visited;
 };
 
 class vertex
@@ -90,12 +96,14 @@ public:
     // D E S T R U C T O R S
     ~graph() {  }
 
+    // G E T T E R S
+    QVector<vertex*> get_vertices() { return vertices; }
+
     // P R I N T E R S
     void print_vertex_edges();
 
     // A L G O R I T H M S
-    QVector<vertex*> djikstras();
-    QVector<vertex*> djikstras(QVector<baseball_team*> tms);
+    QVector<edge*> djikstras(QVector<baseball_team*> tms, baseball_team *start);
 
     // P R I M S
     QVector<edge*> prims();
@@ -106,6 +114,8 @@ private:
     void create_vertices(QVector<baseball_team*> tms);
     void construct_edges();
     void unvisit_all();
+    bool is_team_in_vec(QVector<baseball_team*> tms, baseball_team *tm);
+    vertex *with_name(QString name);
 };
 
 #endif

@@ -18,6 +18,10 @@ public:
     // R E A D   I N
     void read_in();
 
+    // R E A D  O U T
+    void read_out(QVector<baseball_team*> tms);
+    void souvenir_out(QVector<souvenir*> souvs);
+
     // G E T T E R S
     QVector<baseball_team*> get_built() { return teams; }
 

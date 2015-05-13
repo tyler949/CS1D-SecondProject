@@ -14,6 +14,7 @@ plantrip::plantrip(QWidget *parent, QVector<baseball_team*> tms, QVector<basebal
 {
     teams = tms;
     destinations = des;
+    start_at = teams.at(0);
 
     graph new_graph(tms);
     display = new_graph.prims();
@@ -33,12 +34,16 @@ plantrip::~plantrip()
 
 void plantrip::on_visitAll_clicked()
 {
-
+//    graph new_graph(tms);
+//    display = new_graph.djikstras(teams, start_at);
+//    redisplay();
 }
 
 void plantrip::on_visitSome_clicked()
 {
-
+//    graph new_graph(tms);
+//    display = new_graph.djikstras(destinations, start_at);
+//    redisplay();
 }
 
 void plantrip::on_returnButton_clicked()
@@ -48,7 +53,13 @@ void plantrip::on_returnButton_clicked()
 
 void plantrip::on_startButton_clicked()
 {
+    if(ui->tripTable->selectedItems().length() != 0)
+    {
+        QString curr_team = ui->tripTable->selectedItems().at(0)->text();
+        start_at = with_name(curr_team);
 
+        redisplay();
+    }
 }
 
 void plantrip::redisplay()
@@ -89,4 +100,16 @@ void plantrip::redisplay()
     ui->tripTable->setItem(i, 1, new QTableWidgetItem(""));
     ui->tripTable->setItem(i, 2, new QTableWidgetItem(QString::number(total) + " mi."));
 
+}
+
+baseball_team* plantrip::with_name(QString name)
+{
+    for(int i = 0; i < teams.size(); i++)
+    {
+        if(teams.at(i)->get_team_name() == name)
+        {
+            return teams.at(i);
+        }
+    }
+    return teams.at(0);
 }

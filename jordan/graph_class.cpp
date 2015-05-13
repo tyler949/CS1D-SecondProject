@@ -2,7 +2,7 @@
 
 void vertex::set_edge(vertex *d, int w)
 {
-    edge *new_edge = new edge(get_vertex(), d, w);
+    edge *new_edge = new edge(get_vertex(), d, w, false);
     edges.push_back(new_edge);
 }
 
@@ -194,5 +194,38 @@ void graph::unvisit_all()
     for(int i = 0; i < vertices.size(); i++)
     {
         vertices.at(i)->set_visited(false);
+
+
     }
+}
+
+QVector<edge*> graph::djikstras(QVector<baseball_team*> tms, baseball_team *start)
+{
+
+}
+
+bool graph::is_team_in_vec(QVector<baseball_team*> tms, baseball_team *tm)
+{
+    for(int i = 0; i < tms.size(); i++)
+    {
+        if(tms.at(i) == tm)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+vertex *graph::with_name(QString name)
+{
+    for(int i = 0; i < vertices.size(); i++)
+    {
+        if(vertices.at(i)->get_team()->get_team_name() == name)
+        {
+            return vertices.at(i);
+        }
+    }
+
+    return vertices.at(0);
 }

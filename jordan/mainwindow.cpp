@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "stadiumswindow.h"
 #include "trip.h"
+#include "adminlogin.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -36,7 +37,8 @@ void MainWindow::on_planTrip_clicked()
 
 void MainWindow::on_adminLogin_clicked()
 {
-
+    adminlogin *newLogin = new adminlogin(NULL, teams);
+    newLogin->show();
 }
 
 void MainWindow::on_quitMain_clicked()

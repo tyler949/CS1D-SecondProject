@@ -120,3 +120,45 @@ void build::print_built()
         qDebug() << endl;
     }
 }
+
+void build::read_out(QVector<baseball_team*> tms)
+{
+    QFile file("C:/Users/Jordan/Desktop/Project-2/stadium_data.txt");
+
+    if(!file.open(QFile::WriteOnly | QFile::Text))
+        {
+            qDebug() << "\n\nfaliled to open file\n\n";
+        }
+        else
+        {
+            qDebug() << "\n\nfile opened\n\n";
+            QTextStream out(&file);
+            for(int x = 0; x <tms.size(); x++)
+            {
+                out << tms.at(x)->get_stadium_name() << '\n';
+                out << tms.at(x)->get_team_name() << '\n';
+                if(tms.at(x)->get_league() == AMERICAN_LEAGUE)
+                {
+                    out << "American League";
+                }
+                else if(tms.at(x)->get_league() == NATIONAL_LEAGUE)
+                {
+                    out << "National League";
+                }
+                out << tms.at(x)->get_street_address() << '\n';
+                out << tms.at(x)->get_city() << '\n';
+                out << tms.at(x)->get_state() << '\n';
+                out << tms.at(x)->get_zip() << '\n';
+                out << tms.at(x)->get_month() << '\n';
+                out << tms.at(x)->get_day() << '\n';
+                out << tms.at(x)->get_year() << '\n';
+                out << tms.at(x)->get_seating_one() << '\n';
+                out << tms.at(x)->get_description_one() << '\n';
+                out << tms.at(x)->get_seating_two() << '\n';
+                out << tms.at(x)->get_description_two() << "\n\n";
+            }
+
+            file.close();
+        }
+
+}

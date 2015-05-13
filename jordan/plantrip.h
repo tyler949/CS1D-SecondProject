@@ -31,6 +31,7 @@ private:
     QVector<edge*> display;
 
     void redisplay();
+    baseball_team* with_name(QString name);
 };
 
 #endif // PLANTRIP_H
