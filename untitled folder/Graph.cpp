@@ -33,7 +33,7 @@ vector<Vertex>::iterator Edge::getDestination()
 Vertex::Vertex(baseball_stadium s)
 {
     theStadium = s;
-    visited = false;
+    distance = numeric_limits<int>::max();
 }
 //----------------------------------------------------------------
 vector<Edge>::iterator Vertex::getBegin()
@@ -78,6 +78,21 @@ void Vertex::setDistance(int d)
 void Vertex::addEdgeFV(Edge passedEdge)
 {
     edges.push_back(passedEdge);
+}
+//----------------------------------------------------------------
+void Vertex::setEdgeVisit(bool passedBool)
+{
+    edgeVisit = passedBool;
+}
+//----------------------------------------------------------------
+bool Vertex::getEdgeVisit()
+{
+    return edgeVisit;
+}
+//----------------------------------------------------------------
+void Vertex::resetDistance()
+{
+    distance = numeric_limits<int>::max();
 }
 //----------------------------------------------------------------
 //----------------------------------------------------------------
@@ -126,31 +141,30 @@ vector<Edge>::iterator UndirectedGraph::findSmallestEdge(vector<Vertex>::iterato
     tempEdge2 = tempEdge1;
     tempEdge2++;
     
-    for (int i = 0; i < passedVertex->getSizeEdges(); i++) {
+    for (int i = 1; i < passedVertex->getSizeEdges(); i++) {
         if (tempEdge2 == passedVertex->getEnd()) {
             return tempEdge1;
         }
         
-        if (tempEdge2->getCost() < tempEdge1->getCost()) {
-            if (tempEdge2->getDestination()->getVisited() == false) {
+        if (tempEdge1->getDestination()->getEdgeVisit() == true){
+            tempEdge1++;
+            tempEdge2++;
+        }
+        else if (tempEdge2->getCost() < tempEdge1->getCost()) {
+            if (tempEdge2->getDestination()->getEdgeVisit() == false) {
                 tempEdge1 = tempEdge2;
                 tempEdge2++;
             }
-            else {
-                tempEdge2++;
-            }
-        }
-        else if (tempEdge1->getDestination()->getVisited() == true) {
-            tempEdge1++;
-            tempEdge2++;
         }
         else {
             tempEdge2++;
         }
     }
     
+    tempEdge1->getDestination()->setEdgeVisit(true);
     return tempEdge1;
 }
+//----------------------------------------------------------------
 //----------------------------------------------------------------
 void UndirectedGraph::printGraph()
 //getName() will be replaced with whatever the name of the method
@@ -179,10 +193,14 @@ void UndirectedGraph::printGraph()
 //----------------------------------------------------------------
 void UndirectedGraph::printVisit(vector<Edge>::iterator passedEdge)
 {
-    cout << passedEdge->getOrigin()->theStadium.getName() <<
-    "----" << passedEdge->getCost() << "----->" <<
-    passedEdge->getDestination()->theStadium.getName() <<
-    endl;
+    cout << "----" << passedEdge->getDestination()->getDistance()
+    << "----->" << passedEdge->getDestination()->theStadium.getName()
+    << endl;
+}
+//----------------------------------------------------------------
+int UndirectedGraph::getSpecificDistance(int x)
+{
+    return vertices.at(x).getDistance();
 }
 //----------------------------------------------------------------
 int UndirectedGraph::getSizeVertices()
@@ -190,89 +208,53 @@ int UndirectedGraph::getSizeVertices()
     return (int)vertices.size();
 }
 //----------------------------------------------------------------
-int UndirectedGraph::distance(vector<Vertex>::iterator passedVertex1,
-                              vector<Vertex>::iterator passedVertex2)
+void UndirectedGraph::resetEdgeVisit(vector<Vertex>::iterator passedVertex)
 {
-    vector<Edge>::iterator tempEdge1;
-    vector<Edge>::iterator tempEdge2;
+    vector<Edge>::iterator tempEdge;
     
-    tempEdge1 = passedVertex1->getBegin();
-    tempEdge2 = passedVertex2->getBegin();
-    for (int i = 0; i < passedVertex1->getSizeEdges(); i++){
-        while (tempEdge1->getCost() != tempEdge2->getCost() &&
-               tempEdge2 != passedVertex2->getEnd()){
-            if (tempEdge1->getCost() != tempEdge2->getCost()){
-                tempEdge2++;
-            }
-            else{
-                i = passedVertex1->getSizeEdges();
-                break;
-            }
-        }
-        tempEdge1++;
-        tempEdge2 = passedVertex2->getBegin();
+    for (int i = 0; i < passedVertex->getSizeEdges(); i++) {
+        tempEdge = findSmallestEdge(passedVertex);
+        tempEdge->getDestination()->setEdgeVisit(false);
     }
-    tempEdge1--;
-    return tempEdge1->getCost();
+
+}
+//----------------------------------------------------------------
+void UndirectedGraph::resetDistancesFG()
+{
+    vector<Vertex>::iterator tempVertex;
+    tempVertex = vertices.begin();
+    
+    for (int i = 0; i < vertices.size(); i++) {
+        tempVertex->resetDistance();
+    }
 }
 //----------------------------------------------------------------
 void UndirectedGraph::dijkstras(vector<Vertex>::iterator passedVertex)
 {
     vector<Vertex>::iterator tempVertex;
     vector<Edge>::iterator tempEdge;
-    
+
     tempVertex = passedVertex;
-    passedVertex->setVisited(true);
-    passedVertex->setDistance(0);
+    tempVertex->setVisited(true);
+    tempVertex->setDistance(0);
     
     for (int i = 0; i < getSizeVertices(); i++) {
         for (int j = 0; j < tempVertex->getSizeEdges(); j++) {
             tempEdge = findSmallestEdge(tempVertex);
-            if (tempEdge->getDestination()->getVisited() == false){
-                tempEdge->getDestination()->setVisited(true);
-                tempEdge->getDestination()->setDistance(tempEdge->getCost());
+            
+            if (tempEdge->getDestination()->getDistance() > tempEdge->getOrigin()->getDistance() + tempEdge->getCost())
+            {
+                tempEdge->getDestination()->setDistance(tempEdge->getOrigin()->getDistance() + tempEdge->getCost());
                 printVisit(tempEdge);
+                tempEdge++;
             }
         }
+        resetEdgeVisit(tempVertex);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        tempVertex->setVisited(true);
         tempVertex++;
     }
-    
 }
 //----------------------------------------------------------------
+//----------------------------------------------------------------
+//----------------------------------------------------------------
 
-//vector<Vertex>::iterator tempVertex;
-//vector<Edge>::iterator tempEdge;
-//vector<trip>::iterator holdTrip;
-//vector<trip> t;
-//int tempVar;
-//
-//passedVertex->setVisited(true);
-//passedVertex->setDistance(0);
-//t.push_back(trip(passedVertex, 0, passedVertex));
-//holdTrip = t.begin();
-//
-//while (t.size() < vertices.size()) {
-//    tempVertex = holdTrip->getVertex();
-//    tempVar = tempVertex->getSizeEdges();
-//    
-//    for (int i = 0; i < tempVar; i++) {
-//        cout << "test 1" << endl;
-//        tempEdge = findSmallestEdge(tempVertex);
-//        if (tempEdge->getDestination()->getVisited() == false) {
-//            printVisit(tempEdge);
-//            tempEdge->getDestination()->setVisited(true);
-//            
-//            t.push_back(trip(tempEdge->getDestination(),
-//                             tempEdge->getCost(),
-//                             tempEdge->getOrigin()));
-//            
-//            cout << "test 2" << endl;
-//            
-//        }
-//        
-//        }
-//        cout << "outside for loop" << endl;
-//        
-//        holdTrip++;
-//        
-//        }
