@@ -24,7 +24,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_main_window">
        <widget class="QWidget" name="verticalLayoutWidget">
@@ -175,7 +175,7 @@
          <rect>
           <x>0</x>
           <y>330</y>
-          <width>455</width>
+          <width>456</width>
           <height>41</height>
          </rect>
         </property>
@@ -345,7 +345,7 @@
          <rect>
           <x>210</x>
           <y>320</y>
-          <width>196</width>
+          <width>212</width>
           <height>80</height>
          </rect>
         </property>
@@ -1277,7 +1277,7 @@
      <x>0</x>
      <y>0</y>
      <width>775</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

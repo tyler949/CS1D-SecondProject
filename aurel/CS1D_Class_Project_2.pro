@@ -33,3 +33,6 @@ HEADERS  += mainwindow.h \
     user.h
 
 FORMS    += mainwindow.ui
+
+DISTFILES += \
+    stadium_data.txt

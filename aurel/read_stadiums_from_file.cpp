@@ -17,8 +17,8 @@ void read_stadiums_from_file(QVector<baseball_team>& vector)
 
     // ATTENTION
     // be sure to change the following line so that it opens the file on your computer
-    QFile file("/Users/Aurel/Documents/GitHub/CS1D-SecondProject/stadium_data.txt");
-
+ //   QFile file("/Users/Aurel/Documents/GitHub/CS1D-SecondProject/stadium_data.txt");
+  QFile file("/Users/austinrosario/Desktop/CS1D group project 2/CS1D-SecondProject/aurel/stadium_data.txt");
     // DEBUG: reading from write only file to test if the stadiums were written on the file correctly
 //    QFile file("/Users/Aurel/Documents/GitHub/CS1D-SecondProject/write_only.txt");
 
